@@ -34,7 +34,7 @@ rbac_install = 'kubectl apply -f /home/ec2-user/RBAC.yaml'
 tiller_install = 'helm init --service-account tiller'
 metricserver_install = 'helm install stable/metrics-server --name metrics-server --version 2.0.4 --namespace metrics'
 hpa_test = 'kubectl get hpa'
-cluster_autoscale = 'kubectl apply -f /home/ec2-user/final_cluster_auto.yml'
+cluster_autoscale = 'kubectl apply -f /home/ec2-user/cluster_autoscale.yml'
 
 
 print('\033[1m' + "Downloading eksctl")
