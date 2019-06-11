@@ -122,7 +122,6 @@ for i in range(0,len(autoscaling)):
 eks_clusters = []
 for i in range(0,len(eks_response['clusters'])):
     eks_clusters.append(eks_response['clusters'][i])
-    print()
     print(eks_response['clusters'][i])
     r = re.compile('eksctl-'+eks_response['clusters'][i])
     asg_list = list(filter(r.match, autoscaling_groups))
@@ -151,4 +150,4 @@ for i in range(0,len(eks_response['clusters'])):
                     print('\033[1m' + "Updating Cluster Autoscaling for "+":"+asg_list[a])
                     os.system(cluster_autoscale)
                     print('\n')
-                    time.sleep(30)
+                    time.sleep(10)
