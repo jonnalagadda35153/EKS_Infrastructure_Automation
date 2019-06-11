@@ -1,0 +1,46 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: aw-auto-eks
+  region: us-east-1
+
+vpc:
+  id: "vpc-01b579cdbb7bf5d94"  # (optional, must match VPC ID used for each subnet below)
+  cidr: "10.3.0.0/16"       # (optional, must match CIDR used by the given VPC)
+  subnets:
+    # must provide 'private' and/or 'public' subnets by availibility zone as shown
+    public:
+      us-east-1a:
+        id: "subnet-024224a58b66cd09f"
+        cidr: "10.3.20.0/24" # (optional, must match CIDR used by the given subnet)
+
+      us-east-1b:
+        id: "subnet-0255646f670cb107e"
+        cidr: "10.3.21.0/24"  # (optional, must match CIDR used by the given subnet)
+
+    private:
+      us-east-1a:
+        id: "subnet-0c2f7abf9e68baa91"
+        cidr: "10.3.10.0/24" # (optional, must match CIDR used by the given subnet)
+
+      us-east-1b:
+        id: "subnet-0c8ac3a16b0849fa1"
+        cidr: "10.3.11.0/24"  # (optional, must match CIDR used by the given subnet)
+
+iam:
+  serviceRoleARN: "arn:aws:iam::682651395775:role/eksServiceRole"
+
+
+nodeGroups:
+  - name: majoraccounts1-public-workloads
+    instanceType: m5.xlarge
+    labels:
+      nodegroup-type: frontend-workloads
+    desiredCapacity: 2
+  - name: majoraccounts1-private-workloads
+    instanceType: m5.large
+    desiredCapacity: 2
+    labels:
+      nodegroup-type: backend-workload
+    privateNetworking: true
