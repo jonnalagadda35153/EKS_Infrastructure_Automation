@@ -135,7 +135,6 @@ for i in range(0,len(eks_response['clusters'])):
                     item['command'][5] = "--nodes=2:10:" + asg_list[a]
                     write_2 = open('cluster_autoscale_2.yml','w')
                     yaml.dump_all([d], write_2, default_flow_style=False, explicit_start=True)
-                    filenames = ['cluster_autoscale_1.yml', 'cluster_autoscale_2.yml']
                     fin = open("cluster_autoscale_1.yml", "r")
                     d1 = fin.read()
                     fin.close()
