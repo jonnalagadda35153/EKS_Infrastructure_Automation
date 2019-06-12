@@ -10,6 +10,7 @@ import time
 import sys
 import yaml
 
+
 eks_curl = 'curl --location "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp'
 kubectl_curl = 'curl -o kubectl https://amazon-eks.s3-us-west-2.amazonaws.com/1.12.7/2019-03-27/bin/linux/amd64/kubectl'
 kubectl_chmod = 'chmod +x ./kubectl'
@@ -150,6 +151,6 @@ for i in range(0,len(eks_response['clusters'])):
                     fout.write(combine_data)
                     fout.close()
                     print('\033[1m' + "Updating Cluster Autoscaling for "+":"+asg_list[a])
-                    os.system(cluster_autoscale)
+                    system(cluster_autoscale)
                     print('\n')
-                    time.sleep(10)
+                    time.sleep(2)
